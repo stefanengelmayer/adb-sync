@@ -46,7 +46,7 @@ public class SyncItems {
             char[] directory = res.toCharArray();
             char dirchar = directory[0];
             String path= "";
-            for (int i= 56; i<directory.length; i++)
+            for (int i= 55; i<directory.length; i++)
             {
                 path = path + directory[i];
             }

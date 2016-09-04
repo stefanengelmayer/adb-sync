@@ -3,8 +3,11 @@
  */
 public class Main {
     public static void main(String[] args) {
-        String[] paths = new String[] {"/sdcard/WhatsApp/;G:/Android/sync/sdcard0/WhatsApp/",
-        "/storage/3133-3933/DCIM/;G:/Android/sync/sdcard1/DCIM/"};
+        String[] paths = new String[] {
+            "/sdcard/WhatsApp/;G:/Android/sync/sdcard0/WhatsApp/",
+            "/storage/external_SD/DCIM/;G:/Android/sync/sdcard1/DCIM/"
+        };
+        System.out.println("Verzeichnisse werden abgeglichen.... ");
         SyncItems sync = new SyncItems(paths);
 
     }

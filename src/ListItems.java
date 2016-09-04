@@ -98,7 +98,7 @@ public class ListItems {
 
     private void analyze_output(String temp) {
         char[] time = temp.toCharArray();
-        int start = 39;
+        int start = 38;
         if(time[start] == ' ')
         {
             start++;
