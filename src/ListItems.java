@@ -18,11 +18,15 @@ public class ListItems {
     }
 
 
-    public static List<String> listAndroidDirectory(String path) {
+    /**
+     * Gibt die Dateien eines Ordners zurück.
+     * @param path Pfad des (Android-)Ordners
+     * @return List<String> mit den entsprechenden Dateien
+     */
+    public List<String> listAndroidDirectory(String path) {
 
 
         try {
-
             ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", "adb shell ls", "\'" +path+ "\'", "-l");
             pb.redirectErrorStream(true);
             Process p = pb.start();
@@ -58,8 +62,8 @@ public class ListItems {
         while ((_temp = in.readLine()) != null) {
             if ( !_temp.isEmpty()) {
                 System.out.println("Datei kopiert: " +file + " " + _temp);
-                System.out.println("Pfad:"+androidPath);
-                System.out.println("Fiel:"+file);
+                System.out.println("Pfad:"+androidPath+file);
+                System.out.println("File:"+file);
             }
         }
 

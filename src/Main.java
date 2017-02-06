@@ -10,5 +10,6 @@ public class Main {
         System.out.println("Verzeichnisse werden abgeglichen.... ");
         SyncItems sync = new SyncItems(paths);
 
+        System.out.println("Fertig mit kopieren.");
     }
 }
