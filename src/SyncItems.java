@@ -46,7 +46,8 @@ public class SyncItems {
             char[] directory = res.toCharArray();
             char dirchar = directory[0];
             String path= "";
-            for (int i= 56; i<directory.length; i++)
+            // 56 Zeichen, aber anfang bei 0 , nicht 1
+            for (int i= 55; i<directory.length; i++)
             {
                 path = path + directory[i];
             }
