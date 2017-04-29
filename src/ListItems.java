@@ -18,12 +18,16 @@ public class ListItems {
     }
 
 
-    public static List<String> listAndroidDirectory(String path) {
+    /**
+     * Gibt die Dateien eines Ordners zurück.
+     * @param path Pfad des (Android-)Ordners
+     * @return List<String> mit den entsprechenden Dateien
+     */
+    public List<String> listAndroidDirectory(String path) {
 
 
         try {
-
-            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", "adb shell ls", "\'" + path + "\'", "-l");
+            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", "adb shell ls", "\'" +path+ "\'", "-l");
             pb.redirectErrorStream(true);
             Process p = pb.start();
             p.waitFor(timeout, TimeUnit.MILLISECONDS);
