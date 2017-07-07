@@ -57,10 +57,10 @@ public class ListItems {
 
             p.waitFor(timeout, TimeUnit.MILLISECONDS);
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String _temp = null;
-            while ((_temp = in.readLine()) != null) {
-                if (!_temp.isEmpty()) {
-                    System.out.println("Datei kopiert: " + file + " _tmp:" + _temp);
+            String currentProgress = null;
+            while ((currentProgress = in.readLine()) != null) {
+                if (!currentProgress.isEmpty()) {
+                    System.out.println(currentProgress);
                 }
             }
 
