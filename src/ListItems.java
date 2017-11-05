@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ListItems {
     private static final long timeout = 500L;
@@ -102,15 +104,20 @@ public class ListItems {
     }
 
     private void analyze_output(String temp) {
-        char[] time = temp.toCharArray();
-        int start = 38;
-        if (time[start] == ' ') {
-            start++;
+
+        Pattern p = Pattern.compile(".? (\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+) .?");
+        Matcher m = p.matcher(temp);
+        System.out.println("DEBUG: " + temp);
+        if (m.find()) {
+            year = Integer.parseInt(m.group(1));
+            month = Integer.parseInt(m.group(2));
+            day = Integer.parseInt(m.group(3));
+            hours = Integer.parseInt(m.group(4));
+            minutes = Integer.parseInt(m.group(5));
+
+        } else {
+            System.out.println("NO MATCH");
         }
-        year = Integer.parseInt(new String(time, start, 4));
-        month = Integer.parseInt(new String(time, start + 5, 2));
-        day = Integer.parseInt(new String(time, start + 8, 2));
-        hours = Integer.parseInt(new String(time, start + 11, 2));
-        minutes = Integer.parseInt(new String(time, start + 14, 2));
+
     }
 }

@@ -41,51 +41,50 @@ public class SyncItems {
         for (String res : result) {
             String stpath = "";
 
-             // Falls es in ein Ordner ist ( nicht im Format "*.*")
-             // Der Slash / muss manuell hinzugefügt werden
-             // Als Seperator für die Pfade wird das Semikolon ; verwendet
+            // Falls es in ein Ordner ist ( nicht im Format "*.*")
+            // Der Slash / muss manuell hinzugefügt werden
+            // Als Seperator für die Pfade wird das Semikolon ; verwendet
 
             char[] directory = res.toCharArray();
             StringTokenizer stringTokenizer = new StringTokenizer(res);
             char dirchar = directory[0];
             if (dirchar == 'd') {
-                for(int i = 1;stringTokenizer.hasMoreElements(); i++)
-                {
+                for (int i = 1; stringTokenizer.hasMoreElements(); i++) {
                     String out = stringTokenizer.nextToken();
-                    if(i == 6) {
+                    if (i == 8) {
                         stpath = out;
                     }
-                    if(i > 6)
-                    {
+                    // well, at the moment this supports only one whitespace.
+                    if (i > 8) {
                         stpath = stpath + " " + out;
                     }
                 }
                 // Das System hat den Pfad als Verzeichnis erkannt.
                 File d = new File(windowsPath + stpath + "/");
 
-                 // Falls das Verzeichnis noch nicht existiert wird ein neues erstellt.
+                // Falls das Verzeichnis noch nicht existiert wird ein neues erstellt.
                 if (!d.exists()) {
-                    if(!d.mkdir()) System.out.println("Fehler beim erstellen des Ordners " + d.getAbsolutePath() + " auf der Festplatte");
+                    if (!d.mkdir())
+                        System.out.println("Fehler beim erstellen des Ordners " + d.getAbsolutePath() + " auf der Festplatte");
                 }
-                String []paths = new String[] {androidPath + stpath + "/" + ";" + windowsPath + stpath + "/"};
+                String[] paths = new String[]{androidPath + stpath + "/" + ";" + windowsPath + stpath + "/"};
                 craawl_directory(paths);
             } else {
 
-                for(int i = 1;stringTokenizer.hasMoreElements(); i++)
-                {
+                for (int i = 1; stringTokenizer.hasMoreElements(); i++) {
                     String out = stringTokenizer.nextToken();
-                    if(i == 7) {
+                    if (i == 8) {
                         stpath = out;
                     }
-                    if(i > 7){
+                    if (i > 8) {
                         stpath = stpath + " " + out;
                     }
                 }
-                 // Checks, if the files already exists
-                 // otherwise, copys the new File to your PC
+                // Checks, if the files already exists
+                // otherwise, copys the new File to your PC
                 File f = new File(windowsPath + stpath);
                 if (!f.exists()) {
-                   listItems.copyFile(androidPath, stpath, f.getAbsolutePath());
+                    listItems.copyFile(androidPath, stpath, f.getAbsolutePath());
                 }
             }
         }
