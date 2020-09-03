@@ -60,9 +60,20 @@ public class ListItems {
             p.waitFor(timeout, TimeUnit.MILLISECONDS);
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String currentProgress = null;
+            long savedMillis = 0;
             while ((currentProgress = in.readLine()) != null) {
                 if (!currentProgress.isEmpty()) {
-                    System.out.println(currentProgress);
+                    String percentage = currentProgress.substring(0, Math.min(currentProgress.length(), 7));
+                    if(percentage.contains("100")) {
+                        System.out.println(currentProgress);
+                    }
+                    else{
+                        if((System.currentTimeMillis() - savedMillis) > 1500)
+                        {
+                            System.out.println(currentProgress);
+                            savedMillis = System.currentTimeMillis();
+                        }
+                    }
                 }
             }
 
